@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Search Results</title><link rel="stylesheet" href="../static/my_style.css">
+    <h1>SCRUD Results</h1>
+</head>
+<body align="center">
+    <table align="center">
+        <thead>
+          <tr>
+            {% for column in results[0] %}
+              <th>{{ column }}</th>
+            {% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in results[1:] %}
+            <tr>
+              {% for value in row %}
+                <td>{{ value }}</td>
+              {% endfor %}
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    <form method="POST" action="{{ url_for('table', name=name, final_query=final_query) }}">
+        <a class="update" href="/update/{{ name }}/{{ final_query }}">update</a>
+    </form>
+</body>
+</html>
